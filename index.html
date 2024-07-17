@@ -15,8 +15,16 @@
             <button onclick="selectCountry('japan')">Japan</button>
             <button onclick="selectCountry('egypt')">Egypt</button>
         </div>
+        <div class="language-selection">
+            <button onclick="selectLanguage('england', 'az')" class="hidden">Azerbaijani</button>
+            <button onclick="selectLanguage('england', 'ru')" class="hidden">Russian</button>
+            <button onclick="selectLanguage('england', 'en')" class="hidden">English</button>
+        </div>
+        <div class="survey-questions hidden"></div>
+        <div class="complete-btn hidden">
+            <button onclick="completeSurvey()">Complete</button>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
-
