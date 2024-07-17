@@ -3,21 +3,21 @@ const countryData = {
         { question: "I find learning new English words and using them in daily conversation very interesting.", intelligence: "Verbal-Linguistic Intelligence" },
         { question: "I enjoy converting the British pound to manat and calculating relationships between different currencies.", intelligence: "Logical-Mathematical Intelligence" },
         { question: "I enjoy engaging in famous English sports like football and rugby.", intelligence: "Bodily-Kinesthetic Intelligence" },
-        { question: "I find learning about England's flora and fauna and being interested in them very fun.", intelligence: "Naturalist Intelligence" },
+        { question: "I find learning about England's flora and fauna and being interested in them very fun.", intelligence: "Naturalist Intelligence" }
         // Add remaining questions...
     ],
     japan: [
         { question: "I find learning and using words and expressions in Japanese very interesting.", intelligence: "Verbal-Linguistic Intelligence" },
         { question: "I enjoy converting Japanese currency to manat and calculating the amounts.", intelligence: "Logical-Mathematical Intelligence" },
         { question: "I find learning about Japan's unique plants and animals and being interested in them very fun.", intelligence: "Naturalist Intelligence" },
-        { question: "I find listening to the music from the movie Hachiko very interesting.", intelligence: "Musical-Rhythmic Intelligence" },
+        { question: "I find listening to the music from the movie Hachiko very interesting.", intelligence: "Musical-Rhythmic Intelligence" }
         // Add remaining questions...
     ],
     egypt: [
         { question: "I enjoy reading books about ancient Egyptian culture and pharaohs.", intelligence: "Verbal-Linguistic Intelligence" },
         { question: "I enjoy learning about the pyramids in Egypt and sharing the information with my friends.", intelligence: "Interpersonal Intelligence" },
         { question: "I enjoy discovering Egypt's mysterious history and learning about myself.", intelligence: "Intrapersonal Intelligence" },
-        { question: "I set my future goals based on what I learn about Egypt.", intelligence: "Logical-Mathematical Intelligence" },
+        { question: "I set my future goals based on what I learn about Egypt.", intelligence: "Logical-Mathematical Intelligence" }
         // Add remaining questions...
     ]
 };
