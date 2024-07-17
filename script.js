@@ -22,18 +22,22 @@ const countryData = {
     ]
 };
 
+let selectedCountry = '';
+let selectedLanguage = '';
+
 function selectCountry(country) {
-    document.querySelector('.container').innerHTML = `
-        <h1>Select Language</h1>
-        <div class="language-selection">
-            <button onclick="selectLanguage('${country}', 'az')">Azerbaijani</button>
-            <button onclick="selectLanguage('${country}', 'ru')">Russian</button>
-            <button onclick="selectLanguage('${country}', 'en')">English</button>
-        </div>
-    `;
+    selectedCountry = country;
+    document.querySelector('.country-selection').classList.add('hidden');
+    const languageButtons = document.querySelectorAll('.language-selection button');
+    languageButtons.forEach(button => {
+        button.classList.remove('hidden');
+        button.onclick = () => selectLanguage(country, button.textContent.toLowerCase());
+    });
 }
 
 function selectLanguage(country, language) {
+    selectedLanguage = language;
+    document.querySelector('.language-selection').classList.add('hidden');
     const questions = countryData[country];
     let questionHtml = '';
     questions.forEach((q, index) => {
@@ -45,19 +49,13 @@ function selectLanguage(country, language) {
         `;
     });
 
-    document.querySelector('.container').innerHTML = `
-        <h1>Survey</h1>
-        <div class="survey-questions">
-            ${questionHtml}
-        </div>
-        <div class="complete-btn">
-            <button onclick="completeSurvey('${country}', '${language}')">Complete</button>
-        </div>
-    `;
+    document.querySelector('.survey-questions').innerHTML = questionHtml;
+    document.querySelector('.survey-questions').classList.remove('hidden');
+    document.querySelector('.complete-btn').classList.remove('hidden');
 }
 
-function completeSurvey(country, language) {
-    const questions = countryData[country];
+function completeSurvey() {
+    const questions = countryData[selectedCountry];
     let resultHtml = '<h1>Survey Results</h1>';
     const scores = {};
 
