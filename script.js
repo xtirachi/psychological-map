@@ -76,4 +76,11 @@ function completeSurvey() {
         <p>Test nəticələrinə əsasən, uşağınızın güclü tərəfləri və maraq dairələri aşağıdakı sahələrdədir. Bu sahələr uşağınızın qabiliyyətlərini və maraqlarını inkişaf etdirmək üçün idealdır. Əgər uşağınız bu sahələrdə yüksək nəticələr göstərirsə, bu sahələrdə fəaliyyət göstərmək və əlavə təcrübə qazanmaq onun üçün çox faydalı olacaqdır.</p>
         <h2>İxtiraçı Virtual Səyahətin Faydaları</h2>
         <p>İxtiraçı Virtual Səyahət, uşaqların qabiliyyətlərini inkişaf etdirmək və maraqlarını genişləndirmək üçün nəzərdə tutulmuş əyləncəli və təhsil dolu bir mühit təklif edir. Bu proqram, uşaqların müxtəlif sahələrdə bacarıqlarını artırmaq və yeni maraqlar kəşf etmələri üçün mükəmməl bir vasitədir. Test nəticələrinə əsaslanaraq, İxtiraçı Virtual Səyahət proqramı uşağınızın potensialını maksimuma çatdırmağa kömək edəcəkdir.</p>
-        <div class="back
+        <button onclick="goBack()">Əsas səhifəyə qayıt</button>
+    `;
+
+    document.querySelector('.container').innerHTML = resultHtml;
+}
+
+function goBack() {
+    location
