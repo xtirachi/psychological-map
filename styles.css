@@ -24,36 +24,18 @@ h2 {
     color: #666666;
 }
 
-.country-selection {
+.country-selection,
+.language-selection,
+.survey-questions,
+.complete-btn {
     margin-top: 20px;
 }
 
-.country-selection button {
+button {
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-}
-
-.language-selection {
-    display: none;
-    margin-top: 20px;
-}
-
-.language-selection button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.survey-questions {
-    display: none;
-    margin-top: 20px;
-}
-
-.survey-questions h3 {
-    color: #333333;
 }
 
 .survey-questions .question {
@@ -61,20 +43,10 @@ h2 {
 }
 
 .survey-questions .question label {
-    margin-right: 10px;
+    display: block;
+    margin-bottom: 5px;
 }
 
-.survey-questions .question input {
-    margin-left: 10px;
-}
-
-.complete-btn {
-    display: none;
-    margin-top: 20px;
-}
-
-.complete-btn button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+.survey-questions .question input[type="range"] {
+    width: 100%;
 }
