@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +8,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to İxtiraçı Survey</h1>
-        <h2>Select a Country</h2>
+        <img src="Xtirachi - Vector.svg" alt="İxtiraçı Logo" class="logo">
+        <h1>İxtiraçı Sorğusu</h1>
+        <h2>Ölkəni seçin</h2>
         <div class="country-selection">
-            <button onclick="selectCountry('england')">England</button>
-            <button onclick="selectCountry('japan')">Japan</button>
-            <button onclick="selectCountry('egypt')">Egypt</button>
+            <button onclick="selectCountry('england')">İngiltərə</button>
+            <button onclick="selectCountry('japan')">Yaponiya</button>
+            <button onclick="selectCountry('egypt')">Misir</button>
         </div>
-        <div class="language-selection">
-            <button onclick="selectLanguage('england', 'az')" class="hidden">Azerbaijani</button>
-            <button onclick="selectLanguage('england', 'ru')" class="hidden">Russian</button>
-            <button onclick="selectLanguage('england', 'en')" class="hidden">English</button>
+        <div class="language-selection hidden">
+            <button onclick="selectLanguage('az')">Azərbaycan dili</button>
+            <button onclick="selectLanguage('ru')">Rus dili</button>
+            <button onclick="selectLanguage('en')">İngilis dili</button>
         </div>
         <div class="survey-questions hidden"></div>
         <div class="complete-btn hidden">
-            <button onclick="completeSurvey()">Complete</button>
+            <button onclick="completeSurvey()">Tamamla</button>
+        </div>
+        <div class="back-btn hidden">
+            <button onclick="goBack()">Əsas səhifəyə qayıt</button>
         </div>
     </div>
     <script src="script.js"></script>
