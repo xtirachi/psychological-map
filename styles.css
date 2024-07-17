@@ -38,6 +38,10 @@ button {
     cursor: pointer;
 }
 
+.hidden {
+    display: none;
+}
+
 .survey-questions .question {
     margin-bottom: 20px;
 }
