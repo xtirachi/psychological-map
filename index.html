@@ -1,35 +1,45 @@
 <!DOCTYPE html>
-<html lang="az">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İxtiraçı Survey</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Gardner's Multiple Intelligences Questionnaire</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <img src="Xtirachi - Vector.svg" alt="İxtiraçı Logo" class="logo">
-        <h1>İxtiraçı Sorğusu</h1>
-        <h2>Ölkəni seçin</h2>
-        <div class="country-selection">
-            <button onclick="selectCountry('england')">İngiltərə</button>
-            <button onclick="selectCountry('japan')">Yaponiya</button>
-            <button onclick="selectCountry('egypt')">Misir</button>
-        </div>
-        <div class="language-selection hidden">
-            <h2>Dili seçin</h2>
-            <button onclick="selectLanguage('az')">Azərbaycan dili</button>
-            <button onclick="selectLanguage('ru')">Rus dili</button>
-            <button onclick="selectLanguage('en')">İngilis dili</button>
-        </div>
-        <div class="survey-questions hidden"></div>
-        <div class="complete-btn hidden">
-            <button onclick="completeSurvey()">Tamamla</button>
-        </div>
-        <div class="back-btn hidden">
-            <button onclick="goBack()">Əsas səhifəyə qayıt</button>
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">Gardner's Multiple Intelligences Questionnaire</h1>
+        <form id="questionnaire">
+            <div class="mb-6">
+                <h2 class="text-xl font-semibold mb-2">Part 1: İngiltərə Mədəni İrs və Səyahət Seti</h2>
+                <p>"İngilis dilində yeni sözlər öyrənib, onları gündəlik danışıqda istifadə etmək mənim üçün çox maraqlıdır."</p>
+                <div class="flex space-x-2 mb-4">
+                    <label><input type="radio" name="q1" value="0" required> 0</label>
+                    <label><input type="radio" name="q1" value="1"> 1</label>
+                    <label><input type="radio" name="q1" value="2"> 2</label>
+                    <label><input type="radio" name="q1" value="3"> 3</label>
+                    <label><input type="radio" name="q1" value="4"> 4</label>
+                </div>
+                <p>"İngiltərə funtunu manata çevirməyi və fərqli valyutalar arasındakı əlaqələri hesablamayı xoşlayıram."</p>
+                <div class="flex space-x-2 mb-4">
+                    <label><input type="radio" name="q2" value="0" required> 0</label>
+                    <label><input type="radio" name="q2" value="1"> 1</label>
+                    <label><input type="radio" name="q2" value="2"> 2</label>
+                    <label><input type="radio" name="q2" value="3"> 3</label>
+                    <label><input type="radio" name="q2" value="4"> 4</label>
+                </div>
+                <!-- Repeat for all questions -->
+            </div>
+            <!-- Repeat for all parts -->
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
+        </form>
+        <div id="result" class="mt-8 hidden">
+            <h2 class="text-xl font-bold mb-4">Result</h2>
+            <div id="pdf-viewer" class="border p-4"></div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
