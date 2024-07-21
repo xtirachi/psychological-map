@@ -214,7 +214,7 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
 
     const docDefinition = {
         content: [
-            { text: 'Gardner\'in Çoxsaylı Zəka Testi Nəticələri', style: 'header' },
+            { text: 'İxtiraçı Çoxsaylı Zəka Testi', style: 'header' },
             ...intelligenceDetails[predominantIntelligence],
             additionalMessage
         ],
