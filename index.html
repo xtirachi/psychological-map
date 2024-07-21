@@ -5,35 +5,194 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gardner's Multiple Intelligences Questionnaire</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .question {
+            background-color: #fff7cc;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            border: 2px solid #ffec99;
+        }
+        .question p {
+            font-weight: bold;
+            color: #ff9f1c;
+        }
+        .question label {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ffec99;
+            border-radius: 0.25rem;
+            background-color: #fff5e1;
+            cursor: pointer;
+        }
+        .question input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        .question label:hover {
+            background-color: #ffe8cc;
+        }
+        .hidden {
+            display: none;
+        }
+        .result-section {
+            background-color: #f0f9ff;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            border: 2px solid #a2d2ff;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 p-6">
+<body class="bg-blue-100 p-6">
     <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h1 class="text-2xl font-bold mb-4">Gardner's Multiple Intelligences Questionnaire</h1>
+        <h1 class="text-3xl font-bold text-blue-700 mb-4">Gardner's Multiple Intelligences Questionnaire</h1>
         <form id="questionnaire">
             <div class="mb-6">
-                <h2 class="text-xl font-semibold mb-2">Part 1: İngiltərə Mədəni İrs və Səyahət Seti</h2>
-                <p>"İngilis dilində yeni sözlər öyrənib, onları gündəlik danışıqda istifadə etmək mənim üçün çox maraqlıdır."</p>
-                <div class="flex space-x-2 mb-4">
-                    <label><input type="radio" name="q1" value="0" required> 0</label>
-                    <label><input type="radio" name="q1" value="1"> 1</label>
-                    <label><input type="radio" name="q1" value="2"> 2</label>
-                    <label><input type="radio" name="q1" value="3"> 3</label>
-                    <label><input type="radio" name="q1" value="4"> 4</label>
+                <h2 class="text-2xl font-semibold text-blue-600 mb-2">Part 1: İngiltərə Mədəni İrs və Səyahət Seti</h2>
+                <div class="question">
+                    <p>"İngilis dilində yeni sözlər öyrənib, onları gündəlik danışıqda istifadə etmək mənim üçün çox maraqlıdır."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q1" value="0" required> 0</label>
+                        <label><input type="radio" name="q1" value="1"> 1</label>
+                        <label><input type="radio" name="q1" value="2"> 2</label>
+                        <label><input type="radio" name="q1" value="3"> 3</label>
+                        <label><input type="radio" name="q1" value="4"> 4</label>
+                    </div>
                 </div>
-                <p>"İngiltərə funtunu manata çevirməyi və fərqli valyutalar arasındakı əlaqələri hesablamayı xoşlayıram."</p>
-                <div class="flex space-x-2 mb-4">
-                    <label><input type="radio" name="q2" value="0" required> 0</label>
-                    <label><input type="radio" name="q2" value="1"> 1</label>
-                    <label><input type="radio" name="q2" value="2"> 2</label>
-                    <label><input type="radio" name="q2" value="3"> 3</label>
-                    <label><input type="radio" name="q2" value="4"> 4</label>
+                <div class="question">
+                    <p>"İngiltərə funtunu manata çevirməyi və fərqli valyutalar arasındakı əlaqələri hesablamayı xoşlayıram."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q2" value="0" required> 0</label>
+                        <label><input type="radio" name="q2" value="1"> 1</label>
+                        <label><input type="radio" name="q2" value="2"> 2</label>
+                        <label><input type="radio" name="q2" value="3"> 3</label>
+                        <label><input type="radio" name="q2" value="4"> 4</label>
+                    </div>
                 </div>
-                <!-- Repeat for all questions -->
+                <div class="question">
+                    <p>"İngiltərənin məşhur idman növləri olan futbol və rugbi ilə məşğul olmaqdan zövq alıram."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q3" value="0" required> 0</label>
+                        <label><input type="radio" name="q3" value="1"> 1</label>
+                        <label><input type="radio" name="q3" value="2"> 2</label>
+                        <label><input type="radio" name="q3" value="3"> 3</label>
+                        <label><input type="radio" name="q3" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"İngiltərənin flora və faunasını öyrənmək və onlarla maraqlanmaq mənim üçün çox əyləncəlidir."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q4" value="0" required> 0</label>
+                        <label><input type="radio" name="q4" value="1"> 1</label>
+                        <label><input type="radio" name="q4" value="2"> 2</label>
+                        <label><input type="radio" name="q4" value="3"> 3</label>
+                        <label><input type="radio" name="q4" value="4"> 4</label>
+                    </div>
+                </div>
             </div>
-            <!-- Repeat for all parts -->
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-2">Part 2: İngiltərə İncəsənət və Yaradıcılıq Seti</h2>
+                <div class="question">
+                    <p>"Big Ben modelini qurmaq və onu əl ilə tamamlamağı sevirəm."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q5" value="0" required> 0</label>
+                        <label><input type="radio" name="q5" value="1"> 1</label>
+                        <label><input type="radio" name="q5" value="2"> 2</label>
+                        <label><input type="radio" name="q5" value="3"> 3</label>
+                        <label><input type="radio" name="q5" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"Öz yaradıcılığıma əsaslanan rəsmlər çəkməkdən zövq alıram."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q6" value="0" required> 0</label>
+                        <label><input type="radio" name="q6" value="1"> 1</label>
+                        <label><input type="radio" name="q6" value="2"> 2</label>
+                        <label><input type="radio" name="q6" value="3"> 3</label>
+                        <label><input type="radio" name="q6" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"London avtobusu, telefon qutusu kimi modelləri qurmaq məni həyəcanlandırır."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q7" value="0" required> 0</label>
+                        <label><input type="radio" name="q7" value="1"> 1</label>
+                        <label><input type="radio" name="q7" value="2"> 2</label>
+                        <label><input type="radio" name="q7" value="3"> 3</label>
+                        <label><input type="radio" name="q7" value="4"> 4</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-2">Part 3: İngiltərə Eksperiment və Tədqiqat Seti</h2>
+                <div class="question">
+                    <p>"Nyutonun işıq zərrəcikləri eksperimentni anlamaq mənə zövq verir."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q8" value="0" required> 0</label>
+                        <label><input type="radio" name="q8" value="1"> 1</label>
+                        <label><input type="radio" name="q8" value="2"> 2</label>
+                        <label><input type="radio" name="q8" value="3"> 3</label>
+                        <label><input type="radio" name="q8" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"Gizli şifrələri və cavabları tapmaq mənim üçün əyləncəlidir."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q9" value="0" required> 0</label>
+                        <label><input type="radio" name="q9" value="1"> 1</label>
+                        <label><input type="radio" name="q9" value="2"> 2</label>
+                        <label><input type="radio" name="q9" value="3"> 3</label>
+                        <label><input type="radio" name="q9" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"Gül əkmə fəaliyyətini və həmin gülün inkişafını müşahidə etməyi sevirəm."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q10" value="0" required> 0</label>
+                        <label><input type="radio" name="q10" value="1"> 1</label>
+                        <label><input type="radio" name="q10" value="2"> 2</label>
+                        <label><input type="radio" name="q10" value="3"> 3</label>
+                        <label><input type="radio" name="q10" value="4"> 4</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold text-blue-600 mb-2">Part 4: İngiltərə STEAM və İnnovasiya Seti</h2>
+                <div class="question">
+                    <p>"Körpü konstruktorunu inşa etməyin məni inkişaf etdirdiyini düşünürəm."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q11" value="0" required> 0</label>
+                        <label><input type="radio" name="q11" value="1"> 1</label>
+                        <label><input type="radio" name="q11" value="2"> 2</label>
+                        <label><input type="radio" name="q11" value="3"> 3</label>
+                        <label><input type="radio" name="q11" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"Virtual eynəklə virtual dünyaya səyahət etmək çox əyləncəlidir."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q12" value="0" required> 0</label>
+                        <label><input type="radio" name="q12" value="1"> 1</label>
+                        <label><input type="radio" name="q12" value="2"> 2</label>
+                        <label><input type="radio" name="q12" value="3"> 3</label>
+                        <label><input type="radio" name="q12" value="4"> 4</label>
+                    </div>
+                </div>
+                <div class="question">
+                    <p>"Qlobusda ölkə və şəhərləri tapmaq, onlar haqqında məlumatlar öyrənmək mənə zövq verir."</p>
+                    <div class="flex space-x-2 mb-4">
+                        <label><input type="radio" name="q13" value="0" required> 0</label>
+                        <label><input type="radio" name="q13" value="1"> 1</label>
+                        <label><input type="radio" name="q13" value="2"> 2</label>
+                        <label><input type="radio" name="q13" value="3"> 3</label>
+                        <label><input type="radio" name="q13" value="4"> 4</label>
+                    </div>
+                </div>
+            </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Submit</button>
         </form>
-        <div id="result" class="mt-8 hidden">
+        <div id="result" class="mt-8 hidden result-section">
             <h2 class="text-xl font-bold mb-4">Result</h2>
             <div id="pdf-viewer" class="border p-4"></div>
         </div>
