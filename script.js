@@ -19,6 +19,14 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
     scores.naturalist += parseInt(formData.get('q4')) + parseInt(formData.get('q10'));
     scores.spatial += parseInt(formData.get('q5')) + parseInt(formData.get('q6')) + parseInt(formData.get('q7')) + parseInt(formData.get('q11')) + parseInt(formData.get('q12'));
 
+ const resultText = `
+        Linguistic Intelligence: ${scores.linguistic}
+        Logical-Mathematical Intelligence: ${scores.logicalMathematical}
+        Bodily-Kinesthetic Intelligence: ${scores.bodilyKinesthetic}
+        Naturalist Intelligence: ${scores.naturalist}
+        Spatial Intelligence: ${scores.spatial}
+    `;
+    
     const highestScore = Math.max(scores.linguistic, scores.logicalMathematical, scores.bodilyKinesthetic, scores.naturalist, scores.spatial, scores.musical, scores.interpersonal, scores.intrapersonal);
     let predominantIntelligence = '';
 
