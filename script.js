@@ -1,61 +1,56 @@
-document.getElementById('questionnaire').addEventListener('submit', function(e) {
+document.getElementById('questionnaire-az').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const scores = {
-        linguistic: 0,
+        verbalLinguistic: 0,
         logicalMathematical: 0,
+        visualSpatial: 0,
         bodilyKinesthetic: 0,
-        naturalist: 0,
-        spatial: 0,
-        musical: 0,
         interpersonal: 0,
-        intrapersonal: 0,
+        naturalist: 0,
+        musical: 0,
+        intrapersonal: 0
     };
     
     // Calculate scores
-    scores.linguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q13'));
-    scores.logicalMathematical += parseInt(formData.get('q2')) + parseInt(formData.get('q8')) + parseInt(formData.get('q9'));
-    scores.bodilyKinesthetic += parseInt(formData.get('q3'));
-    scores.naturalist += parseInt(formData.get('q4')) + parseInt(formData.get('q10'));
-    scores.spatial += parseInt(formData.get('q5')) + parseInt(formData.get('q6')) + parseInt(formData.get('q7')) + parseInt(formData.get('q11')) + parseInt(formData.get('q12'));
+    scores.verbalLinguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q2'));
+    scores.logicalMathematical += parseInt(formData.get('q3')) + parseInt(formData.get('q4'));
+    scores.visualSpatial += parseInt(formData.get('q5')) + parseInt(formData.get('q6'));
+    scores.bodilyKinesthetic += parseInt(formData.get('q7')) + parseInt(formData.get('q8'));
+    scores.interpersonal += parseInt(formData.get('q9')) + parseInt(formData.get('q10'));
+    scores.naturalist += parseInt(formData.get('q11')) + parseInt(formData.get('q12'));
+    scores.musical += parseInt(formData.get('q13')) + parseInt(formData.get('q14'));
+    scores.intrapersonal += parseInt(formData.get('q15')) + parseInt(formData.get('q16'));
 
- const resultText = `
-        Linguistic Intelligence: ${scores.linguistic}
-        Logical-Mathematical Intelligence: ${scores.logicalMathematical}
-        Bodily-Kinesthetic Intelligence: ${scores.bodilyKinesthetic}
-        Naturalist Intelligence: ${scores.naturalist}
-        Spatial Intelligence: ${scores.spatial}
-    `;
-    
-    const highestScore = Math.max(scores.linguistic, scores.logicalMathematical, scores.bodilyKinesthetic, scores.naturalist, scores.spatial, scores.musical, scores.interpersonal, scores.intrapersonal);
+    const highestScore = Math.max(...Object.values(scores));
     let predominantIntelligence = '';
 
-    if (highestScore === scores.linguistic) {
-        predominantIntelligence = 'Linguistic Intelligence';
+    if (highestScore === scores.verbalLinguistic) {
+        predominantIntelligence = 'Verbal-Linqvistik intellekt';
     } else if (highestScore === scores.logicalMathematical) {
-        predominantIntelligence = 'Logical-Mathematical Intelligence';
+        predominantIntelligence = 'Məntiqi-Riyazi intellekt';
+    } else if (highestScore === scores.visualSpatial) {
+        predominantIntelligence = 'Vizual-Məkan intellekti';
     } else if (highestScore === scores.bodilyKinesthetic) {
-        predominantIntelligence = 'Bodily-Kinesthetic Intelligence';
-    } else if (highestScore === scores.naturalist) {
-        predominantIntelligence = 'Naturalist Intelligence';
-    } else if (highestScore === scores.spatial) {
-        predominantIntelligence = 'Spatial Intelligence';
-    } else if (highestScore === scores.musical) {
-        predominantIntelligence = 'Musical Intelligence';
+        predominantIntelligence = 'Bədən-Kinestetik intellekt';
     } else if (highestScore === scores.interpersonal) {
-        predominantIntelligence = 'Interpersonal Intelligence';
+        predominantIntelligence = 'Şəxslərarası intellekt';
+    } else if (highestScore === scores.naturalist) {
+        predominantIntelligence = 'Naturalist intellekt';
+    } else if (highestScore === scores.musical) {
+        predominantIntelligence = 'Musiqi-Ritmik intellekt';
     } else if (highestScore === scores.intrapersonal) {
-        predominantIntelligence = 'Intrapersonal Intelligence';
+        predominantIntelligence = 'Şəxsdaxili intellekt';
     }
 
     const intelligenceDetails = {
-        'Linguistic Intelligence': [
-            { text: 'Dil Zəkası', style: 'subheader' },
+        'Verbal-Linqvistik intellekt': [
+            { text: 'Verbal-Linqvistik intellekt', style: 'subheader' },
             { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"İngilis dilində yeni sözlər öyrənib, onları gündəlik danışıqda istifadə etmək mənim üçün çox maraqlıdır."',
-            '"Qlobusda ölkə və şəhərləri tapmaq, onlar haqqında məlumatlar öyrənmək mənə zövq verir."',
+            '"İngilis dilində yeni sözlər öyrənib, onları gündəlik danışıqda istifadə etməkdən zövq alırsınızmı?"',
+            '"İngiltərənin tarixi haqqında məlumat öyrənməkdən və başqalarına danışmaqdan zövq alırsınızmı?"',
             { text: 'İnterpretasiya:', style: 'bold' },
-            'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü dil zəkasına malikdir. Yeni sözləri öyrənmək və danışıqda istifadə etməkdən zövq alırlar və müxtəlif ölkələr və şəhərlər haqqında məlumat öyrənmək onları maraqlandırır.',
+            'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü verbal-linqvistik intellektə malikdir. Yeni sözləri öyrənmək və danışıqda istifadə etməkdən zövq alırlar və müxtəlif ölkələr və şəhərlər haqqında məlumat öyrənmək onları maraqlandırır.',
             { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
             { text: 'Oxuma Fəaliyyətləri:', style: 'italic' },
             'Fərqli kitabları, o cümlədən bədii, qeyri-bədii və poeziya oxumağa təşviq edin.',
@@ -70,12 +65,11 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
             'Maraqları və cari hadisələr haqqında müzakirələrə qoşulun.',
             'Müzakirələr, hekayə anlatma və ya teatr klublarında iştirak etməyə təşviq edin.'
         ],
-        'Logical-Mathematical Intelligence': [
-            { text: 'Məntiqi-Riyazi Zəka', style: 'subheader' },
+        'Məntiqi-Riyazi intellekt': [
+            { text: 'Məntiqi-Riyazi intellekt', style: 'subheader' },
             { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"İngiltərə funtunu manata çevirməyi və fərqli valyutalar arasındakı əlaqələri hesablamayı xoşlayıram."',
-            '"Nyutonun işıq zərrəcikləri eksperimentni anlamaq mənə zövq verir."',
-            '"Gizli şifrələri və cavabları tapmaq mənim üçün əyləncəlidir."',
+            '"İngiltərə funtunu manata çevirməyi və fərqli valyutalar arasındakı əlaqələri hesablamayı xoşlayırsınızmı?"',
+            '"Stounhencin strukturunu və tarixi əhəmiyyətini araşdırmaq maraqlıdırmı?"',
             { text: 'İnterpretasiya:', style: 'bold' },
             'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü məntiqi-riyazi zəkaya malikdir. Rəqəmlərlə işləmək, tapmacaları həll etmək və elmi eksperimentləri anlamaqdan zövq alırlar.',
             { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
@@ -92,10 +86,32 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
             'Büdcələmə, alış-veriş və yemək bişirməklə bağlı fəaliyyətlərdə iştirak edin.',
             'Elm muzeylərinə və planetariumlara səfərlər edin.'
         ],
-        'Bodily-Kinesthetic Intelligence': [
-            { text: 'Bədən-Kinestetik Zəka', style: 'subheader' },
+        'Vizual-Məkan intellekti': [
+            { text: 'Vizual-Məkan intellekti', style: 'subheader' },
             { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"İngiltərənin məşhur idman növləri olan futbol və rugbi ilə məşğul olmaqdan zövq alıram."',
+            '"Big Ben modelini qurmaq və onu əl ilə tamamlamaqdan zövq alırsınızmı?"',
+            '"Öz yaradıcılığına əsaslanan rəsmlər çəkməkdən zövq alırsınızmı?"',
+            { text: 'İnterpretasiya:', style: 'bold' },
+            'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü vizual-məkan zəkasına malikdir. Onlar obyektləri vizuallaşdırma və manipulyasiya etmə bacarığına malikdirlər və yaradıcı və tikinti fəaliyyətlərindən zövq alırlar.',
+            { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
+            { text: 'İncəsənət və Əl İşləri:', style: 'italic' },
+            'Rəsm, boyama və heykəltəraşlıq materialları təmin edin.',
+            'Sənət və əl işləri layihələrində iştirak etməyə təşviq edin.',
+            { text: 'Konstruktor Oyuncaqlar:', style: 'italic' },
+            'LEGO, K’NEX və ya model dəstləri kimi tikinti dəstləri təmin edin.',
+            'Modellər və strukturlar yaratmağa cəlb edin.',
+            { text: 'Texnologiya və Virtual Reallıq:', style: 'italic' },
+            'İmmersiv təcrübələr təqdim edən virtual reallıq tətbiqlərini araşdırın.',
+            'Rəqəmsal sənət və modellər yaratmaq üçün dizayn proqramlarından və ya tətbiqlərdən istifadə edin.',
+            { text: 'Vizual Oyunlar:', style: 'italic' },
+            'Məkan düşünməyi tələb edən oyunlar oynayın, məsələn, Tetris və ya 3D tapmacalar.',
+            'Pazl tapmacaları və xəritə oxuma kimi fəaliyyətlərdə iştirak edin.'
+        ],
+        'Bədən-Kinestetik intellekt': [
+            { text: 'Bədən-Kinestetik intellekt', style: 'subheader' },
+            { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
+            '"London avtobusu, telefon qutusu kimi modelləri qurmaqdan zövq alırsınızmı?"',
+            '"Maraqlı dizayn və modelləri çəkmək və ya yaratmaqdan zövq alırsınızmı?"',
             { text: 'İnterpretasiya:', style: 'bold' },
             'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü bədən-kinestetik zəkaya malikdir. Onlar fiziki fəaliyyətlərdə müvəffəqiyyət qazanır və praktik öyrənmə təcrübələrini sevirlər.',
             { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
@@ -112,11 +128,26 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
             'Evdə və ya həyətdə maneə zolaqları və fiziki çağırışlar qurun.',
             'Döyüş sənətləri və ya macəra idman növlərində iştirak etməyə təşviq edin.'
         ],
-        'Naturalist Intelligence': [
-            { text: 'Təbiət Zəkası', style: 'subheader' },
+        'Şəxslərarası intellekt': [
+            { text: 'Şəxslərarası intellekt', style: 'subheader' },
             { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"İngiltərənin flora və faunasını öyrənmək və onlarla maraqlanmaq mənim üçün çox əyləncəlidir."',
-            '"Gül əkmə fəaliyyətini və həmin gülün inkişafını müşahidə etməyi sevirəm."',
+            '"Eksperimentlər zamanı başqaları ilə əməkdaşlıq etməkdən və təcrübələri müzakirə etməkdən zövq alırsınızmı?"',
+            '"Başqalarının təkliflərini dinləyərək və onları nəzərə alaraq problemləri həll etməkdən zövq alırsınızmı?"',
+            { text: 'İnterpretasiya:', style: 'bold' },
+            'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü insanlararası zəkaya malikdir. Qrup fəaliyyətlərində və komanda işində iştirak etməkdən zövq alırlar və fərqli insanlar ilə ünsiyyət qurmaq onları maraqlandırır.',
+            { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
+            { text: 'Qrup Fəaliyyətləri:', style: 'italic' },
+            'Fərqli qrup fəaliyyətlərində və komanda işlərində iştirak etmək üçün imkanlar yaradın.',
+            'Qrup oyunları və komanda işləri təşkil edin.',
+            { text: 'Ünsiyyət İmkanları:', style: 'italic' },
+            'Fərqli insanlar ilə ünsiyyət qurmaq və əməkdaşlıq etmək üçün imkanlar yaradın.',
+            'Fərqli sosial fəaliyyətlərdə iştirak etməyə təşviq edin.'
+        ],
+        'Naturalist intellekt': [
+            { text: 'Naturalist intellekt', style: 'subheader' },
+            { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
+            '"İngiltərənin milli gülü olan qızılgülün toxumlarını əkmək və onların böyüməsini izləməkdən zövq alırsınızmı?"',
+            '"İngiltərənin təbii mühitində müxtəlif bitki və heyvanları öyrənməkdən zövq alırsınızmı?"',
             { text: 'İnterpretasiya:', style: 'bold' },
             'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü təbiət zəkasına malikdir. Onlar təbiətə maraq göstərir və bitki, heyvan və ətraf mühitlə bağlı fəaliyyətlərdən zövq alırlar.',
             { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
@@ -133,35 +164,11 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
             'Ətraf mühit problemləri və qorunmanın əhəmiyyəti haqqında müzakirələr aparın.',
             'Ekoloji layihələr və təkrar emal proqramlarında iştirak etməyə təşviq edin.'
         ],
-        'Spatial Intelligence': [
-            { text: 'Məkan Zəkası', style: 'subheader' },
+        'Musiqi-Ritmik intellekt': [
+            { text: 'Musiqi-Ritmik intellekt', style: 'subheader' },
             { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"Big Ben modelini qurmaq və onu əl ilə tamamlamağı sevirəm."',
-            '"Öz yaradıcılığıma əsaslanan rəsmlər çəkməkdən zövq alıram."',
-            '"London avtobusu, telefon qutusu kimi modelləri qurmaq məni həyəcanlandırır."',
-            '"Körpü konstruktorunu inşa etməyin məni inkişaf etdirdiyini düşünürəm."',
-            '"Virtual eynəklə virtual dünyaya səyahət etmək çox əyləncəlidir."',
-            { text: 'İnterpretasiya:', style: 'bold' },
-            'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü məkan zəkasına malikdir. Onlar obyektləri vizuallaşdırma və manipulyasiya etmə bacarığına malikdirlər və yaradıcı və tikinti fəaliyyətlərindən zövq alırlar.',
-            { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
-            { text: 'İncəsənət və Əl İşləri:', style: 'italic' },
-            'Rəsm, boyama və heykəltəraşlıq materialları təmin edin.',
-            'Sənət və əl işləri layihələrində iştirak etməyə təşviq edin.',
-            { text: 'Konstruktor Oyuncaqlar:', style: 'italic' },
-            'LEGO, K’NEX və ya model dəstləri kimi tikinti dəstləri təmin edin.',
-            'Modellər və strukturlar yaratmağa cəlb edin.',
-            { text: 'Texnologiya və Virtual Reallıq:', style: 'italic' },
-            'İmmersiv təcrübələr təqdim edən virtual reallıq tətbiqlərini araşdırın.',
-            'Rəqəmsal sənət və modellər yaratmaq üçün dizayn proqramlarından və ya tətbiqlərdən istifadə edin.',
-            { text: 'Vizual Oyunlar:', style: 'italic' },
-            'Məkan düşünməyi tələb edən oyunlar oynayın, məsələn, Tetris və ya 3D tapmacalar.',
-            'Pazl tapmacaları və xəritə oxuma kimi fəaliyyətlərdə iştirak edin.'
-        ],
-        'Musical Intelligence': [
-            { text: 'Musiqi Zəkası', style: 'subheader' },
-            { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"Musiqi alətlərini öyrənmək və ifa etmək mənim üçün çox maraqlıdır."',
-            '"Müxtəlif musiqi növlərini dinləməkdən və ifa etməkdən zövq alıram."',
+            '"Eksperimentlər zamanı musiqi və ritmi araşdırmaq və yaratmaqdan zövq alırsınızmı?"',
+            '"Musiqi və ritmlər vasitəsilə yeni şeylər öyrənməkdən zövq alırsınızmı?"',
             { text: 'İnterpretasiya:', style: 'bold' },
             'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü musiqi zəkasına malikdir. Musiqi alətlərini öyrənmək və ifa etməkdən zövq alırlar və müxtəlif musiqi növlərini dinləmək onları maraqlandırır.',
             { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
@@ -175,26 +182,11 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
             'Musiqi oyunları oynayın və musiqi ilə əlaqəli fəaliyyətlərdə iştirak edin.',
             'Musiqi bacarıqlarını inkişaf etdirmək üçün nəzərdə tutulmuş tətbiqlər və onlayn oyunlar təqdim edin.'
         ],
-        'Interpersonal Intelligence': [
-            { text: 'İnsanlararası Zəka', style: 'subheader' },
+        'Şəxsdaxili intellekt': [
+            { text: 'Şəxsdaxili intellekt', style: 'subheader' },
             { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"Qrup fəaliyyətlərində və komanda işində iştirak etmək mənim üçün çox maraqlıdır."',
-            '"Fərqli insanlar ilə ünsiyyət qurmaq və əməkdaşlıq etməkdən zövq alıram."',
-            { text: 'İnterpretasiya:', style: 'bold' },
-            'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü insanlararası zəkaya malikdir. Qrup fəaliyyətlərində və komanda işində iştirak etməkdən zövq alırlar və fərqli insanlar ilə ünsiyyət qurmaq onları maraqlandırır.',
-            { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
-            { text: 'Qrup Fəaliyyətləri:', style: 'italic' },
-            'Fərqli qrup fəaliyyətlərində və komanda işlərində iştirak etmək üçün imkanlar yaradın.',
-            'Qrup oyunları və komanda işləri təşkil edin.',
-            { text: 'Ünsiyyət İmkanları:', style: 'italic' },
-            'Fərqli insanlar ilə ünsiyyət qurmaq və əməkdaşlıq etmək üçün imkanlar yaradın.',
-            'Fərqli sosial fəaliyyətlərdə iştirak etməyə təşviq edin.'
-        ],
-        'Intrapersonal Intelligence': [
-            { text: 'Özünüdərk Zəkası', style: 'subheader' },
-            { text: 'Müəyyənləşdirici Bəyanatlar:', style: 'bold' },
-            '"Öz düşüncələrimi və hisslərimi anlamaq və ifadə etmək mənim üçün çox vacibdir."',
-            '"Özünü inkişaf etdirmək və şəxsi hədəflərə çatmaq üçün çalışmaqdan zövq alıram."',
+            '"Təcrübələr zamanı özünüzün daxili hisslərini və düşüncələrinizi analiz etməkdən zövq alırsınızmı?"',
+            '"Yeni biliklər öyrəndikcə özünüzü daha yaxşı anlamaqdan zövq alırsınızmı?"',
             { text: 'İnterpretasiya:', style: 'bold' },
             'Bu bəyanatlara yüksək bal verən uşaq böyük ehtimalla güclü özünüdərk zəkasına malikdir. Öz düşüncələrini və hisslərini anlamaq və ifadə etməkdən zövq alırlar və özünü inkişaf etdirmək və şəxsi hədəflərə çatmaq onları maraqlandırır.',
             { text: 'Valideynlər üçün Tövsiyələr:', style: 'bold' },
@@ -214,7 +206,7 @@ document.getElementById('questionnaire').addEventListener('submit', function(e) 
 
     const docDefinition = {
         content: [
-            { text: 'İxtiraçı Çoxsaylı Zəka Testi', style: 'header' },
+            { text: 'Gardner\'in Çoxsaylı Zəka Testi Nəticələri', style: 'header' },
             ...intelligenceDetails[predominantIntelligence],
             additionalMessage
         ],
