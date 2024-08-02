@@ -1,4 +1,4 @@
-document.getElementById('questionnaire-az').addEventListener('submit', function(e) {
+document.getElementById('questionnaire-az-england').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(e.target);
     const scores = {
@@ -11,16 +11,56 @@ document.getElementById('questionnaire-az').addEventListener('submit', function(
         musical: 0,
         intrapersonal: 0
     };
-    
-    // Calculate scores
-    scores.verbalLinguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q2'));
-    scores.logicalMathematical += parseInt(formData.get('q3')) + parseInt(formData.get('q4'));
-    scores.visualSpatial += parseInt(formData.get('q5')) + parseInt(formData.get('q6'));
-    scores.bodilyKinesthetic += parseInt(formData.get('q7')) + parseInt(formData.get('q8'));
-    scores.interpersonal += parseInt(formData.get('q9')) + parseInt(formData.get('q10'));
-    scores.naturalist += parseInt(formData.get('q11')) + parseInt(formData.get('q12'));
-    scores.musical += parseInt(formData.get('q13')) + parseInt(formData.get('q14'));
-    scores.intrapersonal += parseInt(formData.get('q15')) + parseInt(formData.get('q16'));
+    const answers = {};
+    let allAnswered = true;
+
+    // Collect answers and calculate scores
+    for (let [name, value] of formData.entries()) {
+        if (!value) {
+            allAnswered = false;
+            break;
+        }
+        answers[name] = value;
+        switch (name) {
+            case 'q1':
+            case 'q2':
+                scores.verbalLinguistic += parseInt(value);
+                break;
+            case 'q3':
+            case 'q4':
+                scores.logicalMathematical += parseInt(value);
+                break;
+            case 'q5':
+            case 'q6':
+                scores.visualSpatial += parseInt(value);
+                break;
+            case 'q7':
+            case 'q8':
+                scores.bodilyKinesthetic += parseInt(value);
+                break;
+            case 'q9':
+            case 'q10':
+                scores.interpersonal += parseInt(value);
+                break;
+            case 'q11':
+            case 'q12':
+                scores.naturalist += parseInt(value);
+                break;
+            case 'q13':
+            case 'q14':
+                scores.musical += parseInt(value);
+                break;
+            case 'q15':
+            case 'q16':
+                scores.intrapersonal += parseInt(value);
+                break;
+        }
+    }
+
+    if (!allAnswered) {
+        alert('Please answer all questions.');
+        return;
+    }
 
     const highestScore = Math.max(...Object.values(scores));
     let predominantIntelligence = '';
@@ -30,15 +70,15 @@ document.getElementById('questionnaire-az').addEventListener('submit', function(
     } else if (highestScore === scores.logicalMathematical) {
         predominantIntelligence = 'Məntiqi-Riyazi intellekt';
     } else if (highestScore === scores.visualSpatial) {
-        predominantIntelligence = 'Vizual-Məkan intellekti';
+        predominantIntelligence = 'Məkan-vizual intellekti';
     } else if (highestScore === scores.bodilyKinesthetic) {
-        predominantIntelligence = 'Bədən-Kinestetik intellekt';
+        predominantIntelligence = 'Bədən-kinestetik intellekti';
     } else if (highestScore === scores.interpersonal) {
         predominantIntelligence = 'Şəxslərarası intellekt';
     } else if (highestScore === scores.naturalist) {
         predominantIntelligence = 'Naturalist intellekt';
     } else if (highestScore === scores.musical) {
-        predominantIntelligence = 'Musiqi-Ritmik intellekt';
+        predominantIntelligence = 'Musiqi-ritmik intellekt';
     } else if (highestScore === scores.intrapersonal) {
         predominantIntelligence = 'Şəxsdaxili intellekt';
     }
@@ -231,10 +271,9 @@ document.getElementById('questionnaire-az').addEventListener('submit', function(
     };
 
     const additionalMessage = {
-        text: 'Vurğulamaq vacibdir ki, hər bir uşaq unikal və çoxsaylı zəka növlərinə malik ola bilər. Müxtəlif fəaliyyət və təcrübələr təqdim etməklə uşaqların tam potensialını araşdırmaq və inkişaf etdirmək mümkündür. Valideynlər və müəllimlər tərəfindən müntəzəm geribildirim və təşviq uşağın inkişafı üçün dəstək və zənginləşdirici mühit yaratmaqda böyük rol oynayır.',
+        text: 'vurğulamaq vacibdir ki, hər bir uşaq unikal və çoxsaylı zəka növlərinə malik ola bilər. Müxtəlif fəaliyyət və təcrübələr təqdim etməklə uşaqların tam potensialını araşdırmaq və inkişaf etdirmək mümkündür. Valideynlər və müəllimlər tərəfindən müntəzəm geribildirim və təşviq uşağın inkişafı üçün dəstək və zənginləşdirici mühit yaratmaqda böyük rol oynayır.',
         style: 'bold'
     };
-
 
     const docDefinition = {
         content: [
@@ -259,6 +298,22 @@ document.getElementById('questionnaire-az').addEventListener('submit', function(
         iframe.className = 'w-full h-96';
         resultContainer.appendChild(iframe);
         document.getElementById('result').classList.remove('hidden');
+    });
+
+    // Post answers to Google Sheets
+    fetch('https://script.google.com/macros/s/AKfycbzA3jrOryg8f3yp3B45imvQ5PdDA9GNRFkio1wyXUiPpSZuVJrDxW2PjG_qysk2oj4l/exec', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(answers)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
     });
 
     pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
