@@ -1,5 +1,6 @@
 document.getElementById('questionnaire-az-england').addEventListener('submit', function(e) {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const scores = {
         verbalLinguistic: 0,
@@ -61,6 +62,15 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         alert('Please answer all questions.');
         return;
     }
+
+    const ixtiraciKodu = prompt("İxtiraçı kodunu daxil edin:");
+
+    if (!ixtiraciKodu) {
+        alert('İxtiraçı kodu daxil edilməlidir.');
+        return;
+    }
+
+    answers.ixtiraciKodu = ixtiraciKodu;
 
     const highestScore = Math.max(...Object.values(scores));
     let predominantIntelligence = '';
@@ -270,7 +280,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         ]
     };
 
-    const additionalMessage = {
+     const additionalMessage = {
         text: 'vurğulamaq vacibdir ki, hər bir uşaq unikal və çoxsaylı zəka növlərinə malik ola bilər. Müxtəlif fəaliyyət və təcrübələr təqdim etməklə uşaqların tam potensialını araşdırmaq və inkişaf etdirmək mümkündür. Valideynlər və müəllimlər tərəfindən müntəzəm geribildirim və təşviq uşağın inkişafı üçün dəstək və zənginləşdirici mühit yaratmaqda böyük rol oynayır.',
         style: 'bold'
     };
@@ -311,10 +321,11 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
+        // Download the PDF after successful logging
+        pdfMake.createPdf(docDefinition).download('test_neticesi.pdf');
     })
     .catch((error) => {
         console.error('Error:', error);
+        alert('An error occurred while logging your answers. Please try again.');
     });
-
-    pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
 });
