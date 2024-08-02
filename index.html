@@ -182,18 +182,19 @@
                         <label><input type="radio" name="q16" value="3"> 3</label>
                         <label><input type="radio" name="q16" value="4"> 4</label>
                     </div>
-                    <div class="button-container">
-                <button type="submit">Göndər</button>
+                     </div>
             </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Göndər</button>
         </form>
-        <div id="result" class="hidden">
-            <h2>Nəticələr</h2>
-            <div id="pdf-viewer"></div>
+        <div id="result" class="mt-8 hidden result-section">
+            <h2 class="text-xl font-bold mb-4">Nəticə</h2>
+            <div id="pdf-viewer" class="border p-4"></div>
         </div>
-        <div class="footer">
-            © 2024 Gardner's Multiple Intelligences Test
-        </div>
+        <button onclick="window.location.href='index.html'" class="bg-gray-500 text-white px-4 py-2 rounded mt-4">Ana səhifəyə qayıt</button>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/vfs_fonts.js"></script>
+
     <script src="script.js"></script>
 </body>
 </html>
