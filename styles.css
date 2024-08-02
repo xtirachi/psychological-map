@@ -1,6 +1,6 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
     background-color: #f7f9fc;
     color: #333;
     margin: 0;
@@ -106,11 +106,6 @@ button:hover {
 button:active {
     background-color: #d81b60;
     transform: scale(1);
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
 }
 
 /* Result Section */
