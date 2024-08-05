@@ -70,6 +70,8 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         return;
     }
 
+    answers.ixtiraciKodu = ixtiraciKodu;
+    answers.country = "England";  // Assuming country is England
 
     const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
     const highestScore = sortedScores[0][1];
@@ -93,29 +95,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         predominantIntelligence = 'Şəxsdaxili intellekt';
     }
 
-    function logActivity(ixtiraciKodu, predominantIntelligence, intelligence1, intelligence1Count, intelligence2, intelligence2Count, intelligence3, intelligence3Count) {
-    const theme = document.querySelector('header h1').textContent;
-    const activity = activityBox.querySelector('h2').textContent;
-    const data = {
-        answers.ixtiraciKodu = ixtiraciKodu;
-    answers.country = "England";  // Assuming country is England
     answers.predominantIntelligence = predominantIntelligence;
-    answers.intelligence1 = sortedScores[0][0];
-    answers.intelligence1Count = sortedScores[0][1];
-    answers.intelligence2 = sortedScores[1][0];
-    answers.intelligence2Count = sortedScores[1][1];
-    answers.intelligence3 = sortedScores[2][0];
-    answers.intelligence3Count = sortedScores[2][1];
-    };
-    //answers.ixtiraciKodu = ixtiraciKodu;
-    //answers.country = "England";  // Assuming country is England
-    //answers.predominantIntelligence = predominantIntelligence;
-    //answers.intelligence1 = sortedScores[0][0];
-    //answers.intelligence1Count = sortedScores[0][1];
-    //answers.intelligence2 = sortedScores[1][0];
-    //answers.intelligence2Count = sortedScores[1][1];
-    //answers.intelligence3 = sortedScores[2][0];
-    //answers.intelligence3Count = sortedScores[2][1];
 
     const intelligenceDetails = {
         'Verbal-Linqvistik intellekt': [
@@ -335,13 +315,17 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     });
 
     // Post answers to Google Sheets
-    console.log('Sending data:', JSON.stringify(answers));
-    fetch('https://script.google.com/macros/s/AKfycbxI2aDYYIQ7pqVff75HYKVYo1AJlhRK1H9iIxGFPbRE8VJXzopR8pTR9SI39Pjh99O8/exec', {
+   console.log('Sending data:', JSON.stringify(answers));
+    fetch('https://script.google.com/macros/s/AKfycbzqFT2_kbqzoWVmI_XvOsagv4i_XQg0KgQ4po0DawclQNzLIAWIJ5J-pHtVSeIgRTLz/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(answers)
+        body: JSON.stringify({
+            ixtiraciKodu: answers.ixtiraciKodu,
+            country: answers.country,
+            predominantIntelligence: answers.predominantIntelligence
+        })
     })
     .then(response => {
         console.log('Response received:', response);
