@@ -70,8 +70,6 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         return;
     }
 
-    answers.ixtiraciKodu = ixtiraciKodu;
-    answers.country = "England";  // Assuming country is England
 
     const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
     const highestScore = sortedScores[0][1];
@@ -95,6 +93,12 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         predominantIntelligence = 'Şəxsdaxili intellekt';
     }
 
+    function logActivity(ixtiraciKodu, predominantIntelligence, intelligence1, intelligence1Count, intelligence2, intelligence2Count, intelligence3, intelligence3Count) {
+    const theme = document.querySelector('header h1').textContent;
+    const activity = activityBox.querySelector('h2').textContent;
+    const data = {
+        answers.ixtiraciKodu = ixtiraciKodu;
+    answers.country = "England";  // Assuming country is England
     answers.predominantIntelligence = predominantIntelligence;
     answers.intelligence1 = sortedScores[0][0];
     answers.intelligence1Count = sortedScores[0][1];
@@ -102,6 +106,16 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     answers.intelligence2Count = sortedScores[1][1];
     answers.intelligence3 = sortedScores[2][0];
     answers.intelligence3Count = sortedScores[2][1];
+    };
+    //answers.ixtiraciKodu = ixtiraciKodu;
+    //answers.country = "England";  // Assuming country is England
+    //answers.predominantIntelligence = predominantIntelligence;
+    //answers.intelligence1 = sortedScores[0][0];
+    //answers.intelligence1Count = sortedScores[0][1];
+    //answers.intelligence2 = sortedScores[1][0];
+    //answers.intelligence2Count = sortedScores[1][1];
+    //answers.intelligence3 = sortedScores[2][0];
+    //answers.intelligence3Count = sortedScores[2][1];
 
     const intelligenceDetails = {
         'Verbal-Linqvistik intellekt': [
