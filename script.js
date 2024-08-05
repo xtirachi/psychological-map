@@ -314,18 +314,19 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         document.getElementById('result').classList.remove('hidden');
     });
 
-    // Post answers to Google Sheets
-   console.log('Sending data:', JSON.stringify(answers));
-    fetch('https://script.google.com/macros/s/AKfycbzqFT2_kbqzoWVmI_XvOsagv4i_XQg0KgQ4po0DawclQNzLIAWIJ5J-pHtVSeIgRTLz/exec', {
+ // Post answers to Google Sheets
+    logActivity(answers.ixtiraciKodu, answers.country, answers.predominantIntelligence);
+});
+
+function logActivity(ixtiraCode, country, predominantIntelligence) {
+    const data = {
+        ixtiraCode: ixtiraCode,
+        country: country,
+        predominantIntelligence: predominantIntelligence
+    };
+    fetch('https://script.google.com/macros/s/AKfycbyBwkwH3tDL4Gzq8LFNQoKGXS85GQNrxy87ok58wbPLonwD2LpDkiW_p3RMxYR3nCIu/exec', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            ixtiraciKodu: answers.ixtiraciKodu,
-            country: answers.country,
-            predominantIntelligence: answers.predominantIntelligence
-        })
+        body: JSON.stringify(data)
     })
     .then(response => {
         console.log('Response received:', response);
