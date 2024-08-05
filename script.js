@@ -321,6 +321,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     });
 
     // Post answers to Google Sheets
+    console.log('Sending data:', JSON.stringify(answers));
     fetch('https://script.google.com/macros/s/AKfycbz7WU1SSwTEIdX-yT7OORSJY6puQjVKMBesJR9L7uy1AxXEc46ZGgds2h5PjusPhh0W/exec', {
         method: 'POST',
         headers: {
@@ -328,14 +329,16 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         },
         body: JSON.stringify(answers)
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        // Download the PDF after successful logging
-        pdfMake.createPdf(docDefinition).download('test_neticesi.pdf');
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('An error occurred while logging your answers. Please try again.');
-    });
+   .then(response => {
+    console.log('Response received:', response);
+    return response.json();
+})
+.then(data => {
+    console.log('Success:', data);
+    // Download the PDF after successful logging
+    pdfMake.createPdf(docDefinition).download('test_neticesi.pdf');
+})
+.catch((error) => {
+    console.error('Error:', error);
+    alert('An error occurred while logging your answers. Please try again.');
 });
