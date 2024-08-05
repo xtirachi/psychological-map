@@ -295,10 +295,10 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         style: 'bold'
     };
 
-    const docDefinition = {
+   const docDefinition = {
         content: [
             { text: 'Gardner\'in Çoxsaylı Zəka Testi Nəticələri', style: 'header' },
-            // ... intelligence details part (omitted)
+            ...intelligenceDetails[predominantIntelligence],
             additionalMessage
         ],
         styles: {
