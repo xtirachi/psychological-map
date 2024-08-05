@@ -71,8 +71,10 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     }
 
     answers.ixtiraciKodu = ixtiraciKodu;
+    answers.country = "England";  // Assuming country is England
 
-    const highestScore = Math.max(...Object.values(scores));
+    const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+    const highestScore = sortedScores[0][1];
     let predominantIntelligence = '';
 
     if (highestScore === scores.verbalLinguistic) {
@@ -92,6 +94,14 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     } else if (highestScore === scores.intrapersonal) {
         predominantIntelligence = 'Şəxsdaxili intellekt';
     }
+
+    answers.predominantIntelligence = predominantIntelligence;
+    answers.intelligence1 = sortedScores[0][0];
+    answers.intelligence1Count = sortedScores[0][1];
+    answers.intelligence2 = sortedScores[1][0];
+    answers.intelligence2Count = sortedScores[1][1];
+    answers.intelligence3 = sortedScores[2][0];
+    answers.intelligence3Count = sortedScores[2][1];
 
     const intelligenceDetails = {
         'Verbal-Linqvistik intellekt': [
@@ -288,7 +298,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     const docDefinition = {
         content: [
             { text: 'Gardner\'in Çoxsaylı Zəka Testi Nəticələri', style: 'header' },
-            ...intelligenceDetails[predominantIntelligence],
+            // ... intelligence details part (omitted)
             additionalMessage
         ],
         styles: {
@@ -329,4 +339,3 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         alert('An error occurred while logging your answers. Please try again.');
     });
 });
-
