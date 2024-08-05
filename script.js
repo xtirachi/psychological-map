@@ -321,8 +321,9 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     });
 
     // Post answers to Google Sheets
-    console.log('Sending data:', JSON.stringify(answers));
-    fetch('https://script.google.com/macros/s/AKfycbz7WU1SSwTEIdX-yT7OORSJY6puQjVKMBesJR9L7uy1AxXEc46ZGgds2h5PjusPhh0W/exec', {
+   function saveUserInfo(answers) {
+       console.log('Sending data:', JSON.stringify(answers));
+    return fetch('https://script.google.com/macros/s/AKfycbz7WU1SSwTEIdX-yT7OORSJY6puQjVKMBesJR9L7uy1AxXEc46ZGgds2h5PjusPhh0W/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
