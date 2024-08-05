@@ -309,7 +309,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         }
     };
 
-    const resultContainer = document.getElementById('pdf-viewer');
+ const resultContainer = document.getElementById('pdf-viewer');
     resultContainer.innerHTML = ''; // Clear previous result
 
     pdfMake.createPdf(docDefinition).getDataUrl((dataUrl) => {
@@ -321,25 +321,30 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     });
 
     // Post answers to Google Sheets
-   function saveUserInfo(answers) {
-       console.log('Sending data:', JSON.stringify(answers));
-    return fetch('https://script.google.com/macros/s/AKfycbz7WU1SSwTEIdX-yT7OORSJY6puQjVKMBesJR9L7uy1AxXEc46ZGgds2h5PjusPhh0W/exec', {
+    console.log('Sending data:', JSON.stringify(answers));
+    fetch('https://script.google.com/macros/s/AKfycbxD_dNPdjKa5gMKGBSD8WMb7WvD84dWhowZma1pEOIWFc8RjBCpKAS7XJ_x6fJyfgCc/exec', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(answers)
     })
-   .then(response => {
-    console.log('Response received:', response);
-    return response.json();
-})
-.then(data => {
-    console.log('Success:', data);
-    // Download the PDF after successful logging
-    pdfMake.createPdf(docDefinition).download('test_neticesi.pdf');
-})
-.catch((error) => {
-    console.error('Error:', error);
-    alert('An error occurred while logging your answers. Please try again.');
+    .then(response => {
+        console.log('Response received:', response);
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === 'success') {
+            console.log('Success:', data);
+            // Download the PDF after successful logging
+            pdfMake.createPdf(docDefinition).download('test_neticesi.pdf');
+        } else {
+            console.error('Logging error:', data.message);
+            alert('An error occurred while logging your answers. Please try again.');
+        }
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('An error occurred while logging your answers. Please try again.');
+    });
 });
