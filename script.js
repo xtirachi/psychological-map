@@ -1,3 +1,4 @@
+
 document.getElementById('questionnaire-az-england').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = new FormData(e.target);
@@ -12,25 +13,6 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 intrapersonal: 0
             };
 
-            const ixtiraciKoduModal = document.getElementById('ixtiraciKoduModal');
-            const ixtiraciKoduInput = document.getElementById('ixtiraciKoduInput');
-            const ixtiraciKoduSubmit = document.getElementById('ixtiraciKoduSubmit');
-            const questionnaireForm = document.getElementById('questionnaire-az-england');
-            const ixtiraciKoduField = document.getElementById('ixtiraciKodu');
-
-            ixtiraciKoduModal.classList.remove('hidden');
-
-            ixtiraciKoduSubmit.addEventListener('click', function() {
-                const ixtiraciKodu = ixtiraciKoduInput.value.trim();
-                if (ixtiraciKodu) {
-                    ixtiraciKoduField.value = ixtiraciKodu;
-                    ixtiraciKoduModal.classList.add('hidden');
-                    questionnaireForm.classList.remove('hidden');
-                } else {
-                    alert('Please enter İxtiraçı kodu.');
-                }
-            });
-            
             // Calculate scores
             scores.verbalLinguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q2'));
             scores.logicalMathematical += parseInt(formData.get('q3')) + parseInt(formData.get('q4'));
@@ -62,12 +44,8 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 predominantIntelligence = 'Şəxsdaxili intellekt';
             }
 
-             if (!allAnswered) {
-        alert('Please answer all questions.');
-        return;
-    }
-            
-            const country = "England";
+            const ixtiraciKodu = formData.get('ixtiraciKodu');
+            const country = formData.get('country');
 
             // Google Sheets integration
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzFiL4xtKtKPzeAlOKk2s7Z3x0zUTdyIQv816sIux6yGWscRKWDhfWacMV2RUaEYXrT/exec'; // Replace with your Google Script URL
@@ -300,3 +278,4 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
 
             pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
         });
+
