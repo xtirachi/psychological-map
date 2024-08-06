@@ -268,10 +268,12 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         }
     };
 
-  const resultContainer = document.getElementById('pdf-viewer');
-            resultContainer.innerHTML = ''; // Clear previous result
+  const pdfDocGenerator = pdfMake.createPdf(docDefinition);
 
-            pdfMake.createPdf(docDefinition).getDataUrl((dataUrl) => {
+            // Display PDF in iframe
+            pdfDocGenerator.getDataUrl((dataUrl) => {
+                const resultContainer = document.getElementById('pdf-viewer');
+                resultContainer.innerHTML = ''; // Clear previous result
                 const iframe = document.createElement('iframe');
                 iframe.src = dataUrl;
                 iframe.className = 'w-full h-96';
@@ -279,5 +281,6 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 document.getElementById('result').classList.remove('hidden');
             });
 
-            pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
+            // Download PDF
+            pdfDocGenerator.download('test_neticesi.pdf'); // Enable download on mobile
         });
