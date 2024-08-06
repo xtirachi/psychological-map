@@ -43,8 +43,19 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 predominantIntelligence = 'Şəxsdaxili intellekt';
             }
 
-            const ixtiraciKodu = formData.get('ixtiraciKodu');
-            const country = formData.get('country');
+             if (!allAnswered) {
+        alert('Please answer all questions.');
+        return;
+    }
+
+    const ixtiraciKodu = prompt("İxtiraçı kodunu daxil edin:");
+
+    if (!ixtiraciKodu) {
+        alert('İxtiraçı kodu daxil edilməlidir.');
+        return;
+    }
+            
+            const country = "England";
 
             // Google Sheets integration
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzFiL4xtKtKPzeAlOKk2s7Z3x0zUTdyIQv816sIux6yGWscRKWDhfWacMV2RUaEYXrT/exec'; // Replace with your Google Script URL
