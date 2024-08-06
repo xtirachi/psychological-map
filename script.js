@@ -50,7 +50,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
             }
             const country = "England";
 
-            // Google Sheets integration
+// Google Sheets integration
             const scriptURL = 'https://script.google.com/macros/s/AKfycbzFiL4xtKtKPzeAlOKk2s7Z3x0zUTdyIQv816sIux6yGWscRKWDhfWacMV2RUaEYXrT/exec'; // Replace with your Google Script URL
             const data = new URLSearchParams();
             data.append('ixtiraciKodu', ixtiraciKodu);
@@ -59,14 +59,9 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
 
             fetch(scriptURL, { method: 'POST', body: data })
                 .then(response => response.json())
-                .then(data => {
-                    console.log('Success:', data);
-                    createPdfAndShow(predominantIntelligence);
-                })
+                .then(data => console.log('Success:', data))
                 .catch(error => console.error('Error:', error));
-        });
-
-        function createPdfAndShow(predominantIntelligence) {
+            
             const intelligenceDetails = {
         'Verbal-Linqvistik intellekt': [
             { text: 'Verbal-Linqvistik intellekt', style: 'subheader' },
@@ -271,9 +266,9 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
             bold: { bold: true, margin: [0, 10, 0, 10] },
             italic: { italics: true, margin: [0, 10, 0, 10] }
         }
-    }};
+    };
 
- const resultContainer = document.getElementById('pdf-viewer');
+  const resultContainer = document.getElementById('pdf-viewer');
             resultContainer.innerHTML = ''; // Clear previous result
 
             pdfMake.createPdf(docDefinition).getDataUrl((dataUrl) => {
@@ -282,9 +277,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 iframe.className = 'w-full h-96';
                 resultContainer.appendChild(iframe);
                 document.getElementById('result').classList.remove('hidden');
-            resultContainer.classList.remove('hidden');
             });
 
             pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
         });
-
