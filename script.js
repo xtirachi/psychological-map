@@ -1,101 +1,62 @@
 document.getElementById('questionnaire-az-england').addEventListener('submit', function(e) {
-    e.preventDefault();
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const scores = {
+                verbalLinguistic: 0,
+                logicalMathematical: 0,
+                visualSpatial: 0,
+                bodilyKinesthetic: 0,
+                interpersonal: 0,
+                naturalist: 0,
+                musical: 0,
+                intrapersonal: 0
+            };
 
-    const formData = new FormData(e.target);
-    const scores = {
-        verbalLinguistic: 0,
-        logicalMathematical: 0,
-        visualSpatial: 0,
-        bodilyKinesthetic: 0,
-        interpersonal: 0,
-        naturalist: 0,
-        musical: 0,
-        intrapersonal: 0
-    };
-    const answers = {};
-    let allAnswered = true;
+            // Calculate scores
+            scores.verbalLinguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q2'));
+            scores.logicalMathematical += parseInt(formData.get('q3')) + parseInt(formData.get('q4'));
+            scores.visualSpatial += parseInt(formData.get('q5')) + parseInt(formData.get('q6'));
+            scores.bodilyKinesthetic += parseInt(formData.get('q7')) + parseInt(formData.get('q8'));
+            scores.interpersonal += parseInt(formData.get('q9')) + parseInt(formData.get('q10'));
+            scores.naturalist += parseInt(formData.get('q11')) + parseInt(formData.get('q12'));
+            scores.musical += parseInt(formData.get('q13')) + parseInt(formData.get('q14'));
+            scores.intrapersonal += parseInt(formData.get('q15')) + parseInt(formData.get('q16'));
 
-    // Collect answers and calculate scores
-    for (let [name, value] of formData.entries()) {
-        if (!value) {
-            allAnswered = false;
-            break;
-        }
-        answers[name] = value;
-        switch (name) {
-            case 'q1':
-            case 'q2':
-                scores.verbalLinguistic += parseInt(value);
-                break;
-            case 'q3':
-            case 'q4':
-                scores.logicalMathematical += parseInt(value);
-                break;
-            case 'q5':
-            case 'q6':
-                scores.visualSpatial += parseInt(value);
-                break;
-            case 'q7':
-            case 'q8':
-                scores.bodilyKinesthetic += parseInt(value);
-                break;
-            case 'q9':
-            case 'q10':
-                scores.interpersonal += parseInt(value);
-                break;
-            case 'q11':
-            case 'q12':
-                scores.naturalist += parseInt(value);
-                break;
-            case 'q13':
-            case 'q14':
-                scores.musical += parseInt(value);
-                break;
-            case 'q15':
-            case 'q16':
-                scores.intrapersonal += parseInt(value);
-                break;
-        }
-    }
+            const highestScore = Math.max(...Object.values(scores));
+            let predominantIntelligence = '';
 
-    if (!allAnswered) {
-        alert('Please answer all questions.');
-        return;
-    }
+            if (highestScore === scores.verbalLinguistic) {
+                predominantIntelligence = 'Verbal-Linqvistik intellekt';
+            } else if (highestScore === scores.logicalMathematical) {
+                predominantIntelligence = 'Məntiqi-Riyazi intellekt';
+            } else if (highestScore === scores.visualSpatial) {
+                predominantIntelligence = 'Vizual-Məkan intellekti';
+            } else if (highestScore === scores.bodilyKinesthetic) {
+                predominantIntelligence = 'Bədən-Kinestetik intellekt';
+            } else if (highestScore === scores.interpersonal) {
+                predominantIntelligence = 'Şəxslərarası intellekt';
+            } else if (highestScore === scores.naturalist) {
+                predominantIntelligence = 'Naturalist intellekt';
+            } else if (highestScore === scores.musical) {
+                predominantIntelligence = 'Musiqi-Ritmik intellekt';
+            } else if (highestScore === scores.intrapersonal) {
+                predominantIntelligence = 'Şəxsdaxili intellekt';
+            }
 
-    const ixtiraciKodu = prompt("İxtiraçı kodunu daxil edin:");
+            const ixtiraciKodu = formData.get('ixtiraciKodu');
+            const country = formData.get('country');
 
-    if (!ixtiraciKodu) {
-        alert('İxtiraçı kodu daxil edilməlidir.');
-        return;
-    }
+            // Google Sheets integration
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzFiL4xtKtKPzeAlOKk2s7Z3x0zUTdyIQv816sIux6yGWscRKWDhfWacMV2RUaEYXrT/exec'; // Replace with your Google Script URL
+            const data = new URLSearchParams();
+            data.append('ixtiraciKodu', ixtiraciKodu);
+            data.append('country', country);
+            data.append('predominantIntelligence', predominantIntelligence);
 
-    answers.ixtiraciKodu = ixtiraciKodu;
-    answers.country = "England";  // Assuming country is England
-
-    const sortedScores = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-    const highestScore = sortedScores[0][1];
-    let predominantIntelligence = '';
-
-    if (highestScore === scores.verbalLinguistic) {
-        predominantIntelligence = 'Verbal-Linqvistik intellekt';
-    } else if (highestScore === scores.logicalMathematical) {
-        predominantIntelligence = 'Məntiqi-Riyazi intellekt';
-    } else if (highestScore === scores.visualSpatial) {
-        predominantIntelligence = 'Məkan-vizual intellekti';
-    } else if (highestScore === scores.bodilyKinesthetic) {
-        predominantIntelligence = 'Bədən-kinestetik intellekti';
-    } else if (highestScore === scores.interpersonal) {
-        predominantIntelligence = 'Şəxslərarası intellekt';
-    } else if (highestScore === scores.naturalist) {
-        predominantIntelligence = 'Naturalist intellekt';
-    } else if (highestScore === scores.musical) {
-        predominantIntelligence = 'Musiqi-ritmik intellekt';
-    } else if (highestScore === scores.intrapersonal) {
-        predominantIntelligence = 'Şəxsdaxili intellekt';
-    }
-
-    answers.predominantIntelligence = predominantIntelligence;
+            fetch(scriptURL, { method: 'POST', body: data })
+                .then(response => response.json())
+                .then(data => console.log('Success:', data))
+                .catch(error => console.error('Error:', error));
 
     const intelligenceDetails = {
         'Verbal-Linqvistik intellekt': [
@@ -304,50 +265,15 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
     };
 
  const resultContainer = document.getElementById('pdf-viewer');
-    resultContainer.innerHTML = ''; // Clear previous result
+            resultContainer.innerHTML = ''; // Clear previous result
 
-    pdfMake.createPdf(docDefinition).getDataUrl((dataUrl) => {
-        const iframe = document.createElement('iframe');
-        iframe.src = dataUrl;
-        iframe.className = 'w-full h-96';
-        resultContainer.appendChild(iframe);
-        document.getElementById('result').classList.remove('hidden');
-    });
+            pdfMake.createPdf(docDefinition).getDataUrl((dataUrl) => {
+                const iframe = document.createElement('iframe');
+                iframe.src = dataUrl;
+                iframe.className = 'w-full h-96';
+                resultContainer.appendChild(iframe);
+                document.getElementById('result').classList.remove('hidden');
+            });
 
- // Post answers to Google Sheets
-    logActivity(answers.ixtiraciKodu, answers.country, answers.predominantIntelligence);
-});
-
-function logActivity(ixtiraCode, country, predominantIntelligence) {
-    const data = {
-        ixtiraCode: ixtiraCode,
-        country: country,
-        predominantIntelligence: predominantIntelligence
-    };
-    fetch('https://script.google.com/macros/s/AKfycbwkcRwte1VP9Uvps5sI8ZXR6wUS2Vw1QWTGqaz4ydj-QRwfA1t1H_rDXq6q4d6A_en5/exec', {
-        method: 'POST',
-        body: JSON.stringify(data)
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-   })
-    .then(response => response.json())
-    .then(result => console.log(result))
-    .catch(error => console.error('Error:', error));
-}
-    })
-    .then(data => {
-        if (data.status === 'success') {
-            console.log('Success:', data);
-            // Download the PDF after successful logging
-            pdfMake.createPdf(docDefinition).download('test_neticesi.pdf');
-        } else {
-            console.error('Logging error:', data.message);
-            alert('An error occurred while logging your answers. Please try again.');
-        }
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        alert('An error occurred while logging your answers. Please try again.');
-    });
-});
+            pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
+        });
