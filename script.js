@@ -44,7 +44,10 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 predominantIntelligence = 'Şəxsdaxili intellekt';
             }
 
-            const ixtiraCode = prompt("İxtiraçı kodunu daxil edin:")
+            const ixtiraciKodu = prompt("İxtiraçı kodunu daxil edin:");
+            if (!ixtiraciKodu) {
+                return; // If the user cancels the prompt, do nothing
+            }
             const country = "England";
 
             // Google Sheets integration
@@ -56,10 +59,15 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
 
             fetch(scriptURL, { method: 'POST', body: data })
                 .then(response => response.json())
-                .then(data => console.log('Success:', data))
+                .then(data => {
+                    console.log('Success:', data);
+                    createPdfAndShow(predominantIntelligence);
+                })
                 .catch(error => console.error('Error:', error));
+        });
 
-    const intelligenceDetails = {
+        function createPdfAndShow(predominantIntelligence) {
+            const intelligenceDetails = {
         'Verbal-Linqvistik intellekt': [
             { text: 'Verbal-Linqvistik intellekt', style: 'subheader' },
             { text: 'Müəyyənləşdirici Suallar:', style: 'bold' },
