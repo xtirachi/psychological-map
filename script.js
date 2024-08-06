@@ -324,13 +324,17 @@ function logActivity(ixtiraCode, country, predominantIntelligence) {
         country: country,
         predominantIntelligence: predominantIntelligence
     };
-    fetch('https://script.google.com/macros/s/AKfycbxQrw1rpWWQdpwRbVgGIA_FXV8ihjfg8dLOqEc4veoksHeOI7cxNBQksNzpGUXOWPUT/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyp83xk3pgdIx-VHtgWwjPqwY00-hUI07FGNrrrazTdevpbKTypouFU3IaYYRpw1jgN/exec', {
         method: 'POST',
         body: JSON.stringify(data)
-    })
-    .then(response => {
-        console.log('Response received:', response);
-        return response.json();
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+   })
+    .then(response => response.json())
+    .then(result => console.log(result))
+    .catch(error => console.error('Error:', error));
+}
     })
     .then(data => {
         if (data.status === 'success') {
