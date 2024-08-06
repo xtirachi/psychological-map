@@ -324,7 +324,7 @@ function logActivity(ixtiraCode, country, predominantIntelligence) {
         country: country,
         predominantIntelligence: predominantIntelligence
     };
-    fetch('https://script.google.com/macros/s/AKfycbyBwkwH3tDL4Gzq8LFNQoKGXS85GQNrxy87ok58wbPLonwD2LpDkiW_p3RMxYR3nCIu/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxQrw1rpWWQdpwRbVgGIA_FXV8ihjfg8dLOqEc4veoksHeOI7cxNBQksNzpGUXOWPUT/exec', {
         method: 'POST',
         body: JSON.stringify(data)
     })
