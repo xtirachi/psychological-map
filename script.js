@@ -54,13 +54,6 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
         alert('Please answer all questions.');
         return;
     }
-
-    const ixtiraciKodu = prompt("İxtiraçı kodunu daxil edin:");
-
-    if (!ixtiraciKodu) {
-        alert('İxtiraçı kodu daxil edilməlidir.');
-        return;
-    }
             
             const country = "England";
 
