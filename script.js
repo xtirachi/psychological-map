@@ -12,12 +12,24 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 intrapersonal: 0
             };
 
-// Validate Ixtiraci kodu
-    const ixtiraciKodu = formData.get('ixtiraci-kodu');
-    if (!ixtiraciKodu) {
-        alert('Please enter Ixtiraci kodu');
-        return;
-    }
+            const ixtiraciKoduModal = document.getElementById('ixtiraciKoduModal');
+            const ixtiraciKoduInput = document.getElementById('ixtiraciKoduInput');
+            const ixtiraciKoduSubmit = document.getElementById('ixtiraciKoduSubmit');
+            const questionnaireForm = document.getElementById('questionnaire-az-england');
+            const ixtiraciKoduField = document.getElementById('ixtiraciKodu');
+
+            ixtiraciKoduModal.classList.remove('hidden');
+
+            ixtiraciKoduSubmit.addEventListener('click', function() {
+                const ixtiraciKodu = ixtiraciKoduInput.value.trim();
+                if (ixtiraciKodu) {
+                    ixtiraciKoduField.value = ixtiraciKodu;
+                    ixtiraciKoduModal.classList.add('hidden');
+                    questionnaireForm.classList.remove('hidden');
+                } else {
+                    alert('Please enter İxtiraçı kodu.');
+                }
+            });
             
             // Calculate scores
             scores.verbalLinguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q2'));
