@@ -12,6 +12,13 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 intrapersonal: 0
             };
 
+// Validate Ixtiraci kodu
+    const ixtiraciKodu = formData.get('ixtiraci-kodu');
+    if (!ixtiraciKodu) {
+        alert('Please enter Ixtiraci kodu');
+        return;
+    }
+            
             // Calculate scores
             scores.verbalLinguistic += parseInt(formData.get('q1')) + parseInt(formData.get('q2'));
             scores.logicalMathematical += parseInt(formData.get('q3')) + parseInt(formData.get('q4'));
