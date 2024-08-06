@@ -271,7 +271,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
             bold: { bold: true, margin: [0, 10, 0, 10] },
             italic: { italics: true, margin: [0, 10, 0, 10] }
         }
-    };
+    }};
 
  const resultContainer = document.getElementById('pdf-viewer');
             resultContainer.innerHTML = ''; // Clear previous result
