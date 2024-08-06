@@ -274,6 +274,7 @@ document.getElementById('questionnaire-az-england').addEventListener('submit', f
                 iframe.className = 'w-full h-96';
                 resultContainer.appendChild(iframe);
                 document.getElementById('result').classList.remove('hidden');
+            resultContainer.classList.remove('hidden');
             });
 
             pdfMake.createPdf(docDefinition).download('test_neticesi.pdf'); // Enable download on mobile
