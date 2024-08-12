@@ -163,7 +163,9 @@ button:active {
     }
 
     form label {
-        font-size: 20px;
+        font-size: 22px;
+            margin: 10px 10px 10px 0px;
+
     
     }
 
