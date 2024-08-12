@@ -10,7 +10,7 @@ body {
 
 .container {
     max-width: 900px;
-    margin: 20px auto;
+    margin: 0px auto;
     padding: 20px;
     background-color: #562193;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -66,10 +66,10 @@ form .question h3 {
 }
 
 form label {
-    display: block;
+    display: inline-block;
     font-size: 16px;
     font-weight: 500;
-    margin: 20px 0 10px;
+    margin: 10px 10px 10px 0px;
 }
 
 form label:first-child,
@@ -77,8 +77,15 @@ form label:last-child {
     font-size: 20px;
 }
 
+form .radio-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 form input[type="radio"] {
-    margin: 10px 2px 10px 30px;
+    margin: 0px 5px 0px 0px;
 }
 
 /* Buttons */
@@ -169,5 +176,9 @@ button:active {
 
     #pdf-viewer iframe {
         height: 250px;
+    }
+
+    form .radio-group {
+        flex-direction: column;
     }
 }
