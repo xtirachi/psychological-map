@@ -147,7 +147,7 @@ button:active {
 @media (max-width: 600px) {
     .container {
         padding: 15px;
-        margin: 10px;
+        margin: 0px;
     }
 
     .header img {
@@ -163,7 +163,8 @@ button:active {
     }
 
     form label {
-        font-size: 14px;
+        font-size: 10px;
+    
     }
 
     button {
