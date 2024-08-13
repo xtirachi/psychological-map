@@ -170,6 +170,7 @@ button:active {
     form label:first-child,
     form label:last-child {
     font-size: 28px;
+        margin: 10px 10px 10px 0px;
 }
 
     button {
